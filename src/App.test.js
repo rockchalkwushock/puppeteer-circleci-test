@@ -4,7 +4,10 @@ describe('Initial Tests', () => {
   let browser
   let page
   beforeEach(async () => {
-    browser = await puppeteer.launch({})
+    browser = await puppeteer.launch({
+      // https://discuss.circleci.com/t/puppeteer-fails-on-circleci/22650/2
+      args: ['-–no-sandbox', '--disable-setuid-sandbox']
+    })
     page = await browser.newPage()
   })
   test('should see title', async () => {
